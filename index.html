@@ -4,11 +4,10 @@
 	<meta charset="utf-8"/>
 	<script src="flashhttprequest.js"></script>
 	<script>
-		// Ensure all FlashHTTPRequests are done via window.onload as we need to hook the Flash object
-		window.onload = function() {
-			FlashHTTPRequest.open('GET', 'http://example.com/', '', 'alert' );
-			FlashHTTPRequest.open('POST', 'http://example2.com/POST/', 'test=test&var2=test', 'alert' );
-		}
+	// This function will be called when the Flash bridge has been loaded
+	function onhook() {
+		FlashHTTPRequest.open('GET', 'http://www.example.com/', '', 'alert' );
+	}
 	</script>
 </head>
 <body>
