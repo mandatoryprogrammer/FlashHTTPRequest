@@ -12,18 +12,23 @@ FlashHTTPRequest.open( HTTP_METHOD, URI, BODY, JS_CALLBACK );
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <script src="flashhttprequest.js"></script>
-    <script>
-        // Ensure all FlashHTTPRequests are done via window.onload as we need to hook the Flash object
-        window.onload = function() {
-            FlashHTTPRequest.open('GET', 'http://example.com/', '', 'alert' );
-            FlashHTTPRequest.open('POST', 'http://example2.com/POST/', 'test=test&var2=test', 'alert' );
+        <meta charset="utf-8"/>
+        <script src="flashhttprequest.js"></script>
+        <script>
+        // This function will be called when the Flash bridge has been loaded
+        // Note that you can only request from sites that allow you to via their /crossdomain.xml policy
+        function onhook() {
+                FlashHTTPRequest.open('GET', 'http://www.example.com/', '', 'alert' );
+                FlashHTTPRequest.open('POST', 'http://www.example.com/', 'var1=test&var2=test2', 'post_receiver' );
         }
-    </script>
+
+        // Response data is passed as an argument to the callback defined
+        function post_receiver( response ) {
+            console.log( response );        
+        }
+        </script>
 </head>
 <body>
-    <div id="flashBridge"></div>
+        <div id="flashBridge"></div>
 </body>
-</html>
 ```
