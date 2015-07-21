@@ -36,10 +36,10 @@ function FlashHTTPRequest_js_bridge( callback, response ) {
 }
 		
 var hook = setInterval( function() {
-	FlashHTTPRequest = getFlashMovie( 'FlashHTTPRequestObject' );
-	if( FlashHTTPRequest !== undefined ) {
-		clearInterval( hook );
-		onhook();
-		return true;
-	}
+    FlashHTTPRequest = getFlashMovie( 'FlashHTTPRequestObject' );
+    if( typeof( FlashHTTPRequest ) === 'function' ) {
+        clearInterval( hook );
+        onhook();
+        return true;
+    }
 }, 500);
